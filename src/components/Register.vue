@@ -4,6 +4,9 @@
         <input type="email" name="email" placeholder="E-mail" v-model="email" />
         <input type="text" name="username" placeholder="Username" v-model="username" />
         <input type="password" name="password" placeholder="Password" v-model="password" />
+        <div class="error">
+            <p v-for="error in errors" :key="error.message">{{error.message}}</p>
+        </div>
         <button @click="register">Register</button>
     </div>
 </template>
@@ -38,6 +41,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    .error {
+        color: red;
+    }
 </style>
