@@ -5,8 +5,11 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-            <v-btn flat dark>
+            <v-btn v-if="!$store.state.isUserLoggedIn" flat dark>
                 <router-link to="register">Sign up</router-link>
+            </v-btn>
+            <v-btn v-if="!$store.state.isUserLoggedIn" flat dark>
+                <router-link to="login">Sign in</router-link>
             </v-btn>
         </v-toolbar-items>
     </v-toolbar>

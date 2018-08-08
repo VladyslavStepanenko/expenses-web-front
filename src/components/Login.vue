@@ -3,18 +3,17 @@
         <v-flex xs12 sm8 md4>
             <div class="white elevation-2">
                 <v-toolbar flat dense dark class="blue darken-3">
-                    <v-toolbar-title>Register</v-toolbar-title>
+                    <v-toolbar-title>Login</v-toolbar-title>
                 </v-toolbar>
                 <div class="pl-4 pr-4 pt-2 pb-2 text-xs-center">
-                    <form autocomplete="off">
-                        <v-text-field type="email" name="email" placeholder="E-mail" v-model="email"></v-text-field>
+                    <form>
                         <v-text-field type="text" name="username" placeholder="Username" v-model="username"></v-text-field>
                         <v-text-field type="password" name="password" placeholder="Password" v-model="password"></v-text-field>
                     </form>
                     <div class="error-message">
                         <p v-for="error in errors" :key="error.message">{{error.message}}</p>
                     </div>
-                    <v-btn dark class="blue darken-3" @click="register">Register</v-btn>
+                    <v-btn dark class="blue darken-3" @click="login">Login</v-btn>
                 </div>
             </div>
         </v-flex>
@@ -27,21 +26,19 @@ import AuthenticationService from '../services/AuthenticationService'
 export default {
     data() {
         return {
-            email: '',
             username: '',
             password: '',
             errors: []
         }
     },
     methods: {
-        register() {
-            AuthenticationService.register({
-                email: this.email,
+        login() {
+            AuthenticationService.login({
                 username: this.username,
                 password: this.password
             })
             .then(res => {
-                console.log(res);
+                this.$store.dispatch('setToken', res.data.token);
             })
             .catch(err => {
                 this.errors = err.response.data.errors;
@@ -56,3 +53,5 @@ export default {
         color: red;
     }
 </style>
+
+
