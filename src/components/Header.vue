@@ -11,6 +11,9 @@
             <v-btn v-if="!$store.state.isUserLoggedIn" flat dark>
                 <router-link to="login">Sign in</router-link>
             </v-btn>
+            <v-btn v-if="$store.state.isUserLoggedIn" flat dark @click="logout">
+                Log out
+            </v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </template>
@@ -20,6 +23,9 @@ export default {
     methods: {
         navigateTo(route) {
             this.$router.push(route);
+        },
+        logout() {
+            this.$store.dispatch('setToken', null);
         }
     }
 }
