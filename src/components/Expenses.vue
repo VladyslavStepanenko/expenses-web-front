@@ -1,6 +1,6 @@
 <template>
     <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md4>
+        <v-flex xs12 sm8 md10>
             <panel title="Expenses">
                 <v-btn                
                     slot="action"
@@ -12,11 +12,17 @@
                     middle>
                     Add
                 </v-btn>
-                <div v-for="expense in expenses" :key="expense.tag">
-                    {{expense.tag}}
-                    {{expense.total}}
-                    {{expense.created_at}}
-                </div>
+                <v-data-table
+                    :headers="headers"
+                    :items="expenses"
+                >
+                    <template slot="items" slot-scope="props">
+                        <td>{{ props.item.merchantName }}</td>
+                        <td>{{ props.item.category }}</td>
+                        <td>{{ props.item.created_at }}</td>
+                        <td>{{ props.item.total }}</td>
+                    </template>
+                </v-data-table>
             </panel>
         </v-flex>
     </v-layout>
@@ -29,7 +35,33 @@ import ExpensesService from '../services/ExpensesService'
 export default {
     data() {
         return {
-            expenses: []
+            expenses: [],
+            headers: [
+                {
+                    text: 'Merchant',
+                    align: 'left',
+                    sortable: true,
+                    value: 'merchant'
+                },
+                {
+                    text: 'Category',
+                    align: 'left',
+                    sortable: true,
+                    value: 'category'
+                },
+                {
+                    text: 'Date',
+                    align: 'left',
+                    sortable: true,
+                    value: 'date'
+                },
+                {
+                    text: 'Total',
+                    align: 'left',
+                    sortable: true,
+                    value: 'total'
+                }
+            ]
         }
     },
     components: {
@@ -58,6 +90,13 @@ export default {
 </script>
 
 <style scoped>
+    .merchant-name {
+        display: inline-block;
+    }
+    .total {
+        position: absolute;
+        right: 10px;
+    }
 </style>
 
 
