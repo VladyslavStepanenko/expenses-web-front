@@ -35,6 +35,10 @@ export default {
             })
             .then(res => {
                 this.$store.dispatch('setToken', res.data.token);
+                this.$store.dispatch('setAccount', res.data.account);
+                
+                // redirect to expenses page
+                this.$router.push('expenses');
             })
             .catch(err => {
                 this.errors = err.response.data.errors;

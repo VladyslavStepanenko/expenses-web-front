@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         token: null,
+        account: null,
         isUserLoggedIn: false
     },
     mutations: {
@@ -17,11 +18,17 @@ export default new Vuex.Store({
             else {
                 state.isUserLoggedIn = false;
             }
+        },
+        setAccount(state, account) {
+            state.account = account;
         }
     },
     actions: {
         setToken({commit}, token) {
             commit('setToken', token);
+        },
+        setAccount({commit}, account) {
+            commit('setAccount', account);
         }
     }
 })
