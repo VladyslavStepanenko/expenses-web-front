@@ -4,6 +4,7 @@
             <panel title="Expenses">
                 <v-btn                
                     slot="action"
+                    :to="{ name: 'expenses-create' }"
                     @click="navigateTo({name: 'expenses-create'})"
                     class="green lighten-1"
                     medium
@@ -90,13 +91,6 @@ export default {
 </script>
 
 <style scoped>
-    .merchant-name {
-        display: inline-block;
-    }
-    .total {
-        position: absolute;
-        right: 10px;
-    }
 </style>
 
 

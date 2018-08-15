@@ -1,7 +1,7 @@
 <template>
     <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
-            <panel title="Expense form">
+            <panel title="New expense">
                 <form autocomplete="off">
                     <v-text-field 
                         label="Tag" 
